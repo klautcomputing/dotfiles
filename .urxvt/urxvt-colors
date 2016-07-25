@@ -1,0 +1,5 @@
+sub on_user_command {
+    my ($self, $cmd) = @_;
+    my $output = `color_escape`;
+    $self->cmd_parse($output);
+}
