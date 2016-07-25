@@ -1,5 +1,4 @@
 #!/bin/bash
-source /home/leex/.xinputrc
 
 # Enable core dumps in case something goes wrong
 ulimit -c unlimited
