@@ -11,6 +11,8 @@ fi
 
 # add sbin to path
 export PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+# load Xdefaults
+xrdb ~/.Xdefaults
 
 # start x if on first tty
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

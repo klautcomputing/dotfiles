@@ -33,6 +33,18 @@ let g:mapleader="\<space>"
 nnoremap <silent> <tab> :bnext<CR>
 vnoremap <silent> <tab> :bnext<CR>
 
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
 " " efficient one-button save/close bindings
 " nnoremap ö :update<CR>
 " vnoremap ö <esc>:update<CR>gv
