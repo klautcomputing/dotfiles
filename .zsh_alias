@@ -1,0 +1,52 @@
+alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias presentation_shell="urxvt -fn xft:terminus:pixelsize=30 -fade 0&"
+alias clone="urxvt -ip -sl 10000 +sb &"
+alias printer="system-config-printer"
+
+alias fix_permisions="chmod -R u+rwX,go+rX,go-w"
+
+alias ppa="sudo add-apt-repository"
+
+alias mplayer="mpv"
+alias mpv="mpv -af scaletempo"
+alias mp="mpv --no-video "
+
+alias ls="ls -hF --color=auto"
+alias la="ls -hF -a --color=auto"
+alias l='ls -hl --color; echo "\e[1;32m --[\e[1;34m Dirs:\e[1;36m `ls -al | egrep \"^drw\" | wc -l` \e[1;32m|\e[1;35m Files: \e[1;31m`ls -al | egrep -v \"^drw\" | grep -v total | wc -l` \e[1;32m]--"'
+
+alias mv="mv -v --backup=existing"
+alias rm="rm -v"
+alias cp="cp -v"
+
+alias c='clear'
+alias KILL='killall -KILL'
+
+alias grep="grep -i --color=auto"
+
+alias inst="sudo aptitude install "
+alias up="sudo aptitude update; sudo aptitude safe-upgrade"
+
+alias vim='nvim -p'
+
+ncserve () {
+    echo "Server running!"
+    echo "Get data with:\nnc -v -q0  $(ifconfig  | grep "inet addr:"| grep -v "127.0.0.1" | cut -d: -f2 | awk "{ print \$1}"|tr -d "Bcast ") 1337 | tar -kxv"
+    tar -cvf - $* | nc -v -q0 -l 1337
+    }
+encserve () {
+        echo "Server running!"
+        echo "Get data with:"
+        pw=`pwgen -s 20 1`
+        bytes=`du -cb "$@" | tail -n1 | awk '{print $1}'`
+        echo -e "nc -v -q0 $(curl -s ip.appspot.com) 1337 | aespipe -e AES256 -p3 -d 3< <(echo $pw) | pv -s $bytes | tar -kxv"
+        tar -cvf - "$@" | aespipe -e AES256 -p3 3< <(echo $pw) | pv -s $bytes | nc -v -q0 -l 1337
+}
+
+ncsend() {
+  tar -cvf - $* | nc -v -q0 $1 1337
+}
+
+ncrecv(){
+    nc -v -q0 $1 1337 | tar -kxv
+}
