@@ -1,3 +1,4 @@
+alias ssh="TERM=xterm-256color ssh"
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias presentation_shell="urxvt -fn xft:terminus:pixelsize=30 -fade 0&"
 alias clone="urxvt -ip -sl 10000 +sb &"
