@@ -158,8 +158,9 @@ bindkey -M vicmd 'v' edit-command-line
 autoload bashcompinit && bashcompinit
 source /home/leex/dotfiles/generated/zsh/i3-completion.sh
 
-source /home/leex/dotfiles/generated/zsh/prompt_hjem/prompt_hjem_setup
-prompt_hjem_setup 8bit vimode
+# hjem - home is where my prompt is
+[ ! -f ~/.hjem ] && wget -O ~/.hjem 'https://raw.githubusercontent.com/cornerman/prompt-hjem/master/prompt_hjem_setup'
+[ -f ~/.hjem ] && prompt_hjem_setup 8bit vimode
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
