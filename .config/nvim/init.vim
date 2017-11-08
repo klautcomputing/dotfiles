@@ -15,7 +15,9 @@ filetype plugin indent on
 syntax enable
 if filereadable($HOME."/.colors") && match(readfile($HOME."/.colors"),"light")
     set background=dark
-    colorscheme monokai
+    let g:rehash256 = 1
+    colorscheme molokai
+    " colorscheme monokai
     " let g:solarized_termcolors=256
     " colorscheme solarized
 else
@@ -24,9 +26,13 @@ else
     colorscheme solarized
 endif
 
+" copy and pasting in OS X
+set cb=unnamedplus
+
 " display
 set cursorline                    " highlight current line
-set number                        " enable line numbers
+"set number                        " enable line numbers
+set number relativenumber
 "set relativenumber                " show relative numbers for all lines but the current one
 set ruler                         " show the cursor position all the time
 set incsearch                     " do incremental searching

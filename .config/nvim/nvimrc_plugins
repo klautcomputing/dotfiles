@@ -7,7 +7,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'     " defaults everyone can agree on
 Plug 'tpope/vim-repeat'       " enable dot-command for Plugins
 Plug 'edsono/vim-matchit'     " matches not only parantheses, but also HTML-Tags and more
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --racer-completer --tern-completer' } " fuzzy autocompletion
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --racer-completer --tern-completer' } " fuzzy autocompletion
 " TODO RUBY
 Plug 'kshenoy/vim-signature' " display and navigate marks
 " Plug 'henrik/vim-indexed-search' " show 'Match x of y' when searching (conflicts with incsearch)
@@ -22,7 +22,7 @@ Plug 'tpope/vim-commentary' " commenting
 Plug 'tpope/vim-surround' " surround text with quotes, parantheses, ...
 Plug 'tpope/vim-speeddating' " ctrl+A/X on dates and time
 Plug 'terryma/vim-multiple-cursors' " sublime-like multiple cursors
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " snippets
+Plug 'SirVer/ultisnips' " | Plug 'honza/vim-snippets'  snippets
 Plug 'AndrewRadev/switch.vim' " toggle true/false etc
 " Plug 'vim-scripts/ingo-library' | Plug 'vim-scripts/QuickFixCurrentNumber' " next quickfix location from current cursor position
 
@@ -50,19 +50,19 @@ Plug 'fidian/hexmode' " HEX-Editor in vim
 Plug 'Chiel92/vim-autoformat' " reformat source code
 Plug 'vim-scripts/BufOnly.vim' " close all buffers except current one
 Plug 'mbbill/undotree' " show undo tree
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'zirrostig/vim-schlepp' " Move selections / lines
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " file type plugins
 " Plug 'sheerun/vim-polyglot' " Lots of filetypes
-Plug 'xolox/vim-easytags' | Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-easytags' | Plug 'xolox/vim-misc'
 Plug 'mattn/emmet-vim' " generate HTML with CSS selectors
 Plug 'rust-lang/rust.vim' " Rust programming language by Mozilla
 Plug 'cespare/vim-toml' " TOML (used for Rust project configuration)
-Plug 'LaTeX-Box-Team/LaTeX-Box' " LaTeX
-Plug 'Valloric/MatchTagAlways' " Highlight matching/surrounding html tags
+" Plug 'LaTeX-Box-Team/LaTeX-Box' " LaTeX
+" Plug 'Valloric/MatchTagAlways' " Highlight matching/surrounding html tags
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " statusline
@@ -72,9 +72,15 @@ Plug 'bling/vim-bufferline'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
+Plug 'fatih/molokai'
 Plug 'sickill/vim-monokai'
 Plug 'trusktr/seti.vim'
+
+" Go Plugins
+ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+ Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+ Plug 'AndrewRadev/splitjoin.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " experimental
@@ -137,13 +143,14 @@ let g:easytags_languages = {
 " let g:solarized_contrast="high"
 
 " YouCompleteMe
-let g:ycm_server_python_interpreter = '/usr/bin/python3' " force ycm to use py3 - useful when multiple versions are installed
+"let g:ycm_server_python_interpreter = '/usr/bin/python2' " force ycm to use py3 - useful when multiple versions are installed
+let g:ycm_server_python_interpreter = ''
 let g:ycm_auto_trigger = 1
 let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
 let g:ycm_key_list_select_completion = ['<TAB>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>']
 let g:ycm_cache_omnifunc = 0
-let g:ycm_rust_src_path = '/home/felix/projects/rust/src'
+"let g:ycm_goto_buffer_command = 'same-buffer' " 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab', 'new-or-existing-tab'
 
 " dont display detail window about current completion
 " set completeopt=menuone,longest

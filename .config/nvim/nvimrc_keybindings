@@ -1,6 +1,62 @@
 let mapleader="\<space>"
 let g:mapleader="\<space>"
 
+" vim-go
+map <leader>n :cnext<CR>
+map <leader>m :cprev<CR>
+nnoremap <leader>a :cclose<CR>
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+let g:go_list_type = "quickfix"
+let g:go_test_timeout = '30s'
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+"let g:go_addtags_transform = "camelcase"
+let g:go_highlight_fields = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_build_constraints = 1
+
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=2 shiftwidth=2
+
+" multiple cursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
+
+" fix Cnext and friends
+cabbrev cnext Cnext
+cabbrev cprev Cprev
+cabbrev cprevious Cprev
+cabbrev lnext Lnext
+cabbrev lprevious Lprev
+cabbrev lprev Lprev
+
+command! Cnext try | cnext | catch | cfirst | catch | endtry
+command! Cprev try | cprev | catch | clast | catch | endtry
+command! Lnext try | lnext | catch | lfirst | catch | endtry
+command! Lprev try | lprev | catch | llast | catch | endtry
+
 " " Toggles are mapped to <leader>t<something>
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -30,8 +86,31 @@ let g:mapleader="\<space>"
 " nnoremap <C-k> [s " prev misspelled word
 
 " tab: next/prev buffer
-nnoremap <silent> <tab> :bnext<CR>
-vnoremap <silent> <tab> :bnext<CR>
+nnoremap <silent> <leader>l :bnext<CR>
+vnoremap <silent> <leader>l :bnext<CR>
+nnoremap <silent> <leader>h :bprevious<CR>
+vnoremap <silent> <leader>h :bprevious<CR>
+" move lines
+nnoremap <c-j> :m .+1<CR>==
+nnoremap <c-k> :m .-2<CR>==
+inoremap <c-j> <Esc>:m .+1<CR>==gi
+inoremap <c-k> <Esc>:m .-2<CR>==gi
+vnoremap <c-j> :m '>+1<CR>gv=gv
+vnoremap <c-k> :m '<-2<CR>gv=gv
+
+nmap <C-n> :call HighlightCurrentWord()<CR>:!redraw<CR>:call multiple_cursors#new("n",1)<CR>
+
+" " make Y behave like D and C, yanking till end of line
+map Y y$
+
+" " FZF: Fuzzy file finding
+nmap <leader>e :ProjectFiles<CR>
+nmap <leader>E :GitFiles<CR>
+nmap <leader>r :History<CR>
+nmap <leader>L :Locate<space>
+" nmap <leader>t :BTags<CR>
+nmap <leader>t :Tags<CR>
+nmap <leader>a :Ag<space>
 
 " " efficient one-button save/close bindings
 " nnoremap ö :update<CR>
@@ -83,8 +162,6 @@ vnoremap <silent> <tab> :bnext<CR>
 
 " " TODO: imap <C-r>+ <C-o>"+p
 
-" " make Y behave like D and C, yanking till end of line
-" map Y y$
 
 " " paste over rest of line
 " nnoremap <Leader>p v$<Left>p
@@ -171,7 +248,6 @@ vnoremap <silent> <tab> :bnext<CR>
 " nnoremap <silent> <Leader>/ :nohlsearch<CR>
 
 " " TODO: highlight all matches before starting multiple-cursors
-" " nmap <C-n> :call HighlightCurrentWord()<CR>:!redraw<CR>:call multiple_cursors#new("n",1)<CR>
 
 " " location navigation
 " nnoremap <leader>n :lnext<CR>
@@ -191,14 +267,6 @@ vnoremap <silent> <tab> :bnext<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Plugins
 
-" " FZF: Fuzzy file finding
-nmap <leader>e :ProjectFiles<CR>
-nmap <leader>E :GitFiles<CR>
-nmap <leader>r :History<CR>
-nmap <leader>l :Locate<space>
-" nmap <leader>t :BTags<CR>
-nmap <leader>t :Tags<CR>
-nmap <leader>a :Ag<space>
 
 " " Git
 " nmap <leader>gn <Plug>GitGutterNextHunk
