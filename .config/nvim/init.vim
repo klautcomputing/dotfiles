@@ -47,6 +47,7 @@ set list                          "
 set breakindent                   " indent wrapped lines
 set breakindentopt=shift:2
 set display=lastline,uhex         " if last line does not fit on screen, display it anyways
+set clipboard+=unnamedplus
 
 " editing
 set gdefault                      " substitute all occurrences in line per default

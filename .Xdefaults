@@ -1,0 +1,127 @@
+! Cursor
+URxvt*cursorColor: #86a2b0
+URxvt*colorUL: #86a2b0
+
+!term propertys
+*saveLines: 10000
+urxvt*font: xft:terminus
+!URxvt.font: xft:monospace:pixelsize=14:antialias=true
+
+!urxvt only propertys
+URxvt*scrollBar: false
+URxvt*secondaryScroll: true
+URxvt*transparent: True
+URxvt*fadeColor: black
+URxvt*tintColor: black
+
+URxvt.tabbed.tabbar-fg: 3
+URxvt.tabbed.tabbar-bg: blue
+URxvt.tabbed.tab-fg: 0
+URxvt.tabbed.tab-bg: 1
+
+URxvt*visualBell: false
+URxvt*urgentOnBell: true
+
+!fix color issues
+URxvt.intensityStyles: false
+
+!path for extensions
+URxvt.perl-lib: /home/leex/dotfiles/generated/urxvt
+
+!plugins
+URxvt.perl-ext-common: default,matcher,url-select,resize-font
+
+!url
+URxvt.urlLauncher:   /usr/bin/google-chrome
+URxvt.keysym.M-u:    perl:url-select:select_next
+URxvt.underlineURLs: true
+
+!font size
+URxvt.keysym.M-plus:        perl:resize-font:bigger
+URxvt.keysym.M-minus:       perl:resize-font:smaller
+URxvt.keysym.M-numbersign:  perl:resize-font:reset
+URxvt.keysym.M-question:    perl:resize-font:show
+
+!scroll
+! do not scroll with output
+URxvt.scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt.scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt.scrollTtyKeypress: true
+
+URxvt*matcher.button:   1
+URxvt.matcher.pattern.1:  ^(/[^:]+):(\\d*)
+URxvt.matcher.launcher.1: urxvt -e vim +$2 $1
+! Solarized color scheme for the X Window System
+!
+! http://ethanschoonover.com/solarized
+
+
+! Common
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+
+! Dark
+
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+
+
+! Light
+
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
+
+
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+! URxvt*background:            S_base03
+
+*background:              S_base03
+*foreground:              S_base0
+*cursorColor:             S_base1
+*pointerColorBackground:  S_base01
+*pointerColorForeground:  S_base1
+
+*color0:                  S_base02
+*color1:                  S_red
+*color2:                  S_green
+*color3:                  S_yellow
+*color4:                  S_blue
+*color5:                  S_magenta
+*color6:                  S_cyan
+*color7:                  S_base2
+*color9:                  S_orange
+*color8:                  S_base03
+*color10:                 S_base01
+*color11:                 S_base00
+*color12:                 S_base0
+*color13:                 S_violet
+*color14:                 S_base1
+*color15:                 S_base3
+
+! foreground/backround
+URxvt*background: #222222
+URxvt*foreground: #DCDCCC
